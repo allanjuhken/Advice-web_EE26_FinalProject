@@ -1,9 +1,8 @@
-package project.repository;
+package project.adviceweb.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import project.model.Comment;
-
+import org.springframework.stereotype.Repository;
+import project.adviceweb.model.Comment;
+@Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    Comment findByAnswerer(Long userId);
-    Comment findByAnswer(Long answerId);
 }

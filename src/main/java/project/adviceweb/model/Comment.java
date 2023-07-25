@@ -16,7 +16,6 @@ import java.time.LocalDate;
 @Builder
 @Entity
 public class Comment {
-
     @Id
     @GeneratedValue(strategy =
             GenerationType.IDENTITY)

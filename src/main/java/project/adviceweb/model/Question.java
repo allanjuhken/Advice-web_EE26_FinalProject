@@ -1,12 +1,10 @@
 package project.adviceweb.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,4 +21,6 @@ public class Question {
     private Long userId;
     private String content;
     private LocalDate questionDate;
+    @ElementCollection
+    private List<String> tags;
 }

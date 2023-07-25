@@ -2,7 +2,7 @@ package project.adviceweb.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import project.model.Answer;
+import project.adviceweb.model.Answer;
 
 import java.util.List;
 

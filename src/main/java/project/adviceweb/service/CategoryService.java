@@ -28,4 +28,19 @@ public class CategoryService {
     public List<Category> findAllCategoriesByType(String type) {
         return categoryRepository.findAllCategoriesByType(type);
     }
+
+    public List<CategoryDto> getAllCategories() {
+        List<Category> categories = categoryRepository.findAll();
+        List<CategoryDto> categoryDtoList = new ArrayList<>();
+        for (Category category : categories) {
+            CategoryDto categoryDto = new CategoryDto();
+            categoryDto.setId(category.getId());
+            categoryDto.setName(category.getName());
+            categoryDto.setType(category.getType());
+            categoryDtoList.add(categoryDto);
+        }
+        return categoryDtoList;
+    }
+
+
 }

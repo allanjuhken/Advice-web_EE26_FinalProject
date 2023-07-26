@@ -1,6 +1,7 @@
 package project.adviceweb.service;
 
 import org.springframework.stereotype.Service;
+import project.adviceweb.dto.AnswerDto;
 import project.adviceweb.exception.AnswerNotFoundException;
 import project.adviceweb.model.Answer;
 import project.adviceweb.repository.AnswerRepository;
@@ -33,7 +34,6 @@ public class AnswerService {
     }
 
     public List<Answer> findAllAnswerers(Long userId) {
-        return answerRepository.findAllAnswerers(userId);
+        return answerRepository.findAnswersByAnswerer(userId);
     }
-
 }

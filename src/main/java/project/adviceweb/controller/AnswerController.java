@@ -18,21 +18,23 @@ public class AnswerController {
         this.answerService = answerService;
     }
 
-    @GetMapping(path = "/answer/{userId}")
+    @GetMapping(path = "/answer/user/{userId}")
     public ResponseEntity<Answer> getAnswerByUser(@PathVariable("userId") Long userId)
             throws AnswerNotFoundException {
         Answer answer = answerService.findAnswerByAnswerer(userId);
         return ResponseEntity.ok(answer);
     }
 
-    @GetMapping(path = "/answer/{questionId}")
+    @GetMapping(path = "/answer/question/{questionId}")
     public ResponseEntity<Answer> getAnswerByQuestion(@PathVariable("questionId") Long questionId)
             throws AnswerNotFoundException {
         Answer answer = answerService.findAnswerByQuestion(questionId);
         return ResponseEntity.ok(answer);
     }
 
-
-
-
+    @GetMapping("/answers/user/{userId}")
+    public ResponseEntity<List<Answer>> getAllAnswersByUser(@PathVariable("userId") Long userId) {
+        List<Answer> answers = answerService.findAllAnswerers(userId);
+        return ResponseEntity.ok(answers);
+    }
 }

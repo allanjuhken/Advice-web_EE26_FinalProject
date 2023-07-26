@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    List<User> findByQuestionAsked(String content);
-    List<User> findByAnswersProvided(String content);
-    List<User> findByCommentsAdded(String content);
+    List<User> findUserByQuestionAsked(String content);
+    List<User> findUserByAnswerType(String answerType);
+    List<User> findUserByCommentsAdded(String content);
 }

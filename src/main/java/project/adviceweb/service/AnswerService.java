@@ -17,23 +17,23 @@ public class AnswerService {
         this.answerRepository = answerRepository;
     }
 
-    public Answer findAnswerByAnswerer(Long userId)
+    public Answer findAnswerIdByUserId(Long userId)
             throws AnswerNotFoundException {
-       Answer answer = answerRepository.findAnswerByAnswerer(userId);
+       Answer answer = answerRepository.findAnswerIdByUserId(userId);
        if (answer == null)
            throw new AnswerNotFoundException("Answer not found", 1);
        return answer;
     }
 
-    public Answer findAnswerByQuestion(Long questionId)
+    public Answer findAnswerByQuestionId(Long questionId)
             throws AnswerNotFoundException {
-        Answer answer = answerRepository.findAnswerByQuestion(questionId);
+        Answer answer = answerRepository.findAnswerByQuestionId(questionId);
         if (answer == null)
             throw new AnswerNotFoundException("Answer not found", 1);
         return answer;
     }
 
-    public List<Answer> findAllAnswerers(Long userId) {
-        return answerRepository.findAnswersByAnswerer(userId);
+    public List<Answer> findAllAnswersByUserId(Long userId) {
+        return answerRepository.findAllAnswersByUserId(userId);
     }
 }

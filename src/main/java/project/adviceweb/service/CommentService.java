@@ -13,17 +13,17 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
-    public Comment findCommentByAnswerer(Long userId)
+    public Comment findCommentByUserId(Long userId)
             throws CommentNotFoundException {
-        Comment comment = commentRepository.findCommentByAnswerer(userId);
+        Comment comment = commentRepository.findCommentByUserId(userId);
         if (userId == null)
             throw new CommentNotFoundException("Comment not found", 3);
         return comment;
     }
 
-    public Comment findCommentByAnswer(Long answerId)
+    public Comment findCommentByAnswerId(Long answerId)
             throws CommentNotFoundException {
-        Comment comment = commentRepository.findCommentByAnswer(answerId);
+        Comment comment = commentRepository.findCommentByAnswerId(answerId);
         if (answerId == null)
             throw new CommentNotFoundException("Comment not found", 3);
         return comment;

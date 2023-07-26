@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, String> {
-    List<Category> findAllCategories(String type);
+    Category findCategoryByName(String name);
+    List<Category> findAllCategoriesByType(String type);
 }

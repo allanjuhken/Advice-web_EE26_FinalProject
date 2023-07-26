@@ -2,6 +2,7 @@ package project.adviceweb.service;
 
 import org.springframework.stereotype.Service;
 import project.adviceweb.dto.CategoryDto;
+import project.adviceweb.exception.CategoryNotFoundException;
 import project.adviceweb.model.Category;
 import project.adviceweb.repository.CategoryRepository;
 
@@ -16,7 +17,15 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
+    public Category findCategoryByName(String name)
+            throws CategoryNotFoundException {
+        Category category = categoryRepository.findCategoryByName(name);
+        if (category == null)
+            throw new CategoryNotFoundException("Category not found", 2);
+        return category;
+    }
+
     public List<Category> findAllCategoriesByType(String type) {
-        return categoryRepository.findAllCategories(type);
+        return categoryRepository.findAllCategoriesByType(type);
     }
 }

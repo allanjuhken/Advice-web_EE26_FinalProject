@@ -25,27 +25,27 @@ public class UserService {
     }
 
     @SneakyThrows
-    public List<User> findByQuestionAsked(String content)
+    public List<User> findUserByQuestionAsked(String content)
     throws UserNotFoundException {
-        List<User> user1 = userRepository.findByQuestionAsked(content);
+        List<User> user1 = userRepository.findUserByQuestionAsked(content);
         if (content == null)
             throw new QuestionNotFoundException("Question not found", 4);
-        return userRepository.findByQuestionAsked(content);
+        return userRepository.findUserByQuestionAsked(content);
     }
 
     @SneakyThrows
-    public List<User> findByAnswersProvided(String content) {
-        List<User> user2 = userRepository.findByAnswersProvided(content);
-        if (content == null)
+    public List<User> findUserByAnswerType(String answerType) {
+        List<User> user2 = userRepository.findUserByAnswerType(answerType);
+        if (answerType == null)
             throw new AnswerNotFoundException("Answer not found", 1);
-        return userRepository.findByAnswersProvided(content);
+        return userRepository.findUserByAnswerType(answerType);
     }
 
     @SneakyThrows
-    public List<User> findByCommentsAdded(String content) {
-        List<User> user3 = userRepository.findByCommentsAdded(content);
+    public List<User> findUserByCommentsAdded(String content) {
+        List<User> user3 = userRepository.findUserByCommentsAdded(content);
         if (content == null)
             throw new CommentNotFoundException("Comment not found", 3);
-        return userRepository.findByCommentsAdded(content);
+        return userRepository.findUserByCommentsAdded(content);
     }
 }

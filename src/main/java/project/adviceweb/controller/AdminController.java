@@ -1,11 +1,9 @@
 package project.adviceweb.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import project.adviceweb.service.*;
 
-@Controller
+@RestController
 public class AdminController {
     private final UserService userService;
     private final QuestionService questionService;

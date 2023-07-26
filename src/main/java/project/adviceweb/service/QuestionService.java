@@ -18,15 +18,15 @@ public class QuestionService {
     }
 
     @SneakyThrows
-    public Question findAsker(Long userId)
+    public Question findAskerByUserId(Long userId)
         throws UserNotFoundException {
-        Question question = questionRepository.findAsker(userId);
+        Question question = questionRepository.findAskerByUserId(userId);
         if (userId == null)
             throw new QuestionNotFoundException("Question not found", 4);
-        return questionRepository.findAsker(userId);
+        return questionRepository.findAskerByUserId(userId);
     }
 
-    public List<Question> findQuestionByTags()  {
-        return questionRepository.findQuestionsByTags();
-    }
+//    public List<Question> findQuestionByTags()  {
+//        return questionRepository.findQuestionsByTags();
+//    }
 }

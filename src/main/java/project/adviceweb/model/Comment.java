@@ -19,7 +19,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy =
             GenerationType.IDENTITY)
-    private Long id;
+    private Long commentId;
     private Long answerId;
     private Long userId;
     private String content;

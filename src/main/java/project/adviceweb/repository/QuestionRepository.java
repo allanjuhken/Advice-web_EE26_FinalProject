@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long> {
-    Question findAsker(Long userId);
-    List<Question> findQuestionsByTags();
+    Question findAskerByUserId(Long userId);
+    //List<Question> findQuestionsByTags();
 }

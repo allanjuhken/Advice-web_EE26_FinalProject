@@ -21,6 +21,6 @@ public class Question {
     private Long userId;
     private String content;
     private LocalDate questionDate;
-    @ElementCollection
-    private List<String> tags;
+//    @ElementCollection
+//    private List<String> tags;
 }

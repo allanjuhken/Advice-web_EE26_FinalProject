@@ -6,6 +6,6 @@ import project.adviceweb.model.Comment;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    Comment findCommentByAnswerer(Long userId);
-    Comment findCommentByAnswer(Long answerId);
+    Comment findCommentByUserId(Long userId);
+    Comment findCommentByAnswerId(Long answerId);
 }

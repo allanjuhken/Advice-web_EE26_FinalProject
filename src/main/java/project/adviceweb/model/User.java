@@ -13,12 +13,12 @@ import java.security.PrivateKey;
 public class User {
     @Id
     @GeneratedValue(strategy =
-            GenerationType.IDENTITY)
+            GenerationType.AUTO)
     private Long userId;
     private String displayedName;
     private String email;
     private String password;
-    private String answerType;
+    private String answerProvided;
     private String commentsAdded;
     private String questionAsked;
 }

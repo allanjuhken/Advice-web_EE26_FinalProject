@@ -18,7 +18,7 @@ import java.time.LocalDate;
 public class Comment {
     @Id
     @GeneratedValue(strategy =
-            GenerationType.IDENTITY)
+            GenerationType.AUTO)
     private Long commentId;
     private Long answerId;
     private Long userId;

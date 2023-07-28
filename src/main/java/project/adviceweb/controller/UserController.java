@@ -33,8 +33,8 @@ public class UserController {
 
     @SneakyThrows
     @GetMapping("/users/answer-type/{answerType}")
-    public ResponseEntity<List<User>> getUsersByAnswerType(@PathVariable("answerType") String answerType) {
-        List<User> users = userService.findUserByAnswerType(answerType);
+    public ResponseEntity<List<User>> getUsersByAnswerProvided(@PathVariable("answerProvided") String answerProvided) {
+        List<User> users = userService.findUserByAnswerProvided(answerProvided);
         return ResponseEntity.ok(users);
     }
 

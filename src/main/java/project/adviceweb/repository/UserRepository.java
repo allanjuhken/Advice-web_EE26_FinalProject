@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findUserByQuestionAsked(String content);
-    List<User> findUserByAnswerType(String answerType);
+    List<User> findUserByAnswerProvided(String answerProvided);
     List<User> findUserByCommentsAdded(String content);
 }

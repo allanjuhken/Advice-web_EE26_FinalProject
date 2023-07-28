@@ -2,6 +2,7 @@ package project.adviceweb.service;
 
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
+import project.adviceweb.dto.UserDto;
 import project.adviceweb.exception.AnswerNotFoundException;
 import project.adviceweb.exception.CommentNotFoundException;
 import project.adviceweb.exception.QuestionNotFoundException;
@@ -34,11 +35,11 @@ public class UserService {
     }
 
     @SneakyThrows
-    public List<User> findUserByAnswerType(String answerType) {
-        List<User> user2 = userRepository.findUserByAnswerType(answerType);
-        if (answerType == null)
+    public List<User> findUserByAnswerProvided(String answerProvided) {
+        List<User> user2 = userRepository.findUserByAnswerProvided(answerProvided);
+        if (answerProvided == null)
             throw new AnswerNotFoundException("Answer not found", 1);
-        return userRepository.findUserByAnswerType(answerType);
+        return userRepository.findUserByAnswerProvided(answerProvided);
     }
 
     @SneakyThrows
@@ -47,5 +48,29 @@ public class UserService {
         if (content == null)
             throw new CommentNotFoundException("Comment not found", 3);
         return userRepository.findUserByCommentsAdded(content);
+    }
+
+    public UserDto save(Long id, UserDto userDto) {
+        User user = toUser(id, userDto);
+        User savedUser = userRepository.save(user);
+        return toUserDto(savedUser);
+    }
+
+    private User toUser(Long id, UserDto userDto) {
+        User user = new User();
+        user.setUserId(userDto.getId());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        user.setDisplayedName(userDto.getDisplayedName());
+        return user;
+    }
+
+    private UserDto toUserDto(User savedUser) {
+        UserDto savedUserDto = new UserDto();
+        savedUserDto.setId(savedUser.getUserId());
+        savedUserDto.setDisplayedName(savedUser.getDisplayedName());
+        savedUserDto.setPassword(savedUser.getPassword());
+        savedUserDto.setEmail(savedUser.getEmail());
+        return savedUserDto;
     }
 }

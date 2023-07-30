@@ -73,20 +73,16 @@ public class AdminController {
     }
 
     @PostMapping("/admin/category/categories")
-    public String createCategory(final ModelMap modelMap,
-                                 @PathVariable("name") String name) {
-        Category category = null;
+    public String createCategory(@PathVariable("name") String name) {
         try {
-            category = categoryService.findCategoryByName(name);
-        } catch (CategoryNotFoundException ignored) {
-        }
-        if (category != null)
+            Category category = categoryService.findCategoryByName(name);
             return "internal-error";
-
-        CategoryDto categoryDto = new CategoryDto();
-        categoryDto.setName(name);
-        modelMap.addAttribute("categoryDto", categoryDto);
-        return "create-category";
+        } catch (CategoryNotFoundException ignored) {
+            CategoryDto categoryDto = new CategoryDto();
+            categoryDto.setName(name);
+            categoryService.save(categoryDto);
+            return "redirect:/admin/categories";
+        }
     }
 
     @GetMapping("admin/comment/create")
@@ -98,8 +94,6 @@ public class AdminController {
 
     @PostMapping("/admin/comment")
     public String createComment(@ModelAttribute("comment") Comment comment) {
-        comment.setUserId(comment.getUserId());
-        comment.setCommentId(comment.getCommentId());
         commentService.save(comment);
         return "redirect:/";
     }

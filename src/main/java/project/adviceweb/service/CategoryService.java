@@ -46,4 +46,26 @@ public class CategoryService {
     public Category save(Category category) {
         return categoryRepository.save(category);
     }
+
+    public CategoryDto save(CategoryDto categoryDto) {
+        Category category = toCategory(categoryDto);
+        Category savedCategory = categoryRepository.save(category);
+        return toCategoryDto(savedCategory);
+    }
+
+    private Category toCategory(CategoryDto categoryDto) {
+        Category category = new Category();
+        category.setId(categoryDto.getId());
+        category.setName(categoryDto.getName());
+        category.setType(categoryDto.getType());
+        return category;
+    }
+
+    private CategoryDto toCategoryDto(Category savedCategory) {
+        CategoryDto savedCategoryDto = new CategoryDto();
+        savedCategoryDto.setId(savedCategory.getId());
+        savedCategoryDto.setName(savedCategory.getName());
+        savedCategoryDto.setType(savedCategory.getType());
+        return savedCategoryDto;
+    }
 }

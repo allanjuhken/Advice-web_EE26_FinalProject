@@ -45,8 +45,6 @@ public class AdminController {
         return "redirect:/";
     }
 
-    
-
     @GetMapping("/admin/user/create")
     public String showCreateUserForm(ModelMap modelMap) {
         UserDto userDto = new UserDto();
@@ -59,4 +57,46 @@ public class AdminController {
         userService.save(userDto.getId(), userDto);
         return "redirect:/admin/users";
     }
+
+    @GetMapping("/")
+    public String getCategories(final ModelMap modelMap) {
+        List<CategoryDto> categoryDtoList = categoryService.getAllCategories();
+        modelMap.addAttribute("categoryDtoList", categoryDtoList);
+        return "index";
+    }
+
+    @GetMapping(value = "/admin/category/create")
+    public String showCreateCategoryForm(ModelMap modelMap) {
+        Category category = new Category();
+        modelMap.addAttribute("category", category);
+        return "create-category";
+    }
+
+    @PostMapping("/admin/category/categories")
+    public String createCategory(@PathVariable("name") String name) {
+        try {
+            Category category = categoryService.findCategoryByName(name);
+            return "internal-error";
+        } catch (CategoryNotFoundException ignored) {
+            CategoryDto categoryDto = new CategoryDto();
+            categoryDto.setName(name);
+            categoryService.save(categoryDto);
+            return "redirect:/admin/categories";
+        }
+    }
+
+    @GetMapping("admin/comment/create")
+    public String showCreateCommentForm(ModelMap modelMap) {
+        Comment comment = new Comment();
+        modelMap.addAttribute("comment", comment);
+        return "create-comment";
+    }
+
+    @PostMapping("/admin/comment")
+    public String createComment(@ModelAttribute("comment") Comment comment) {
+        commentService.save(comment);
+        return "redirect:/";
+    }
+
+    
 }

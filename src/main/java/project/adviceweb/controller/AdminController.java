@@ -45,13 +45,6 @@ public class AdminController {
         return "redirect:/";
     }
 
-    @GetMapping("/")
-    public String getCategories(final ModelMap modelMap) {
-        List<CategoryDto> categoryDtoList = categoryService.getAllCategories();
-        modelMap.addAttribute("categoryDtoList", categoryDtoList);
-        return "index";
-    }
-
     @GetMapping("/admin/user/create")
     public String showCreateUserForm(ModelMap modelMap) {
         UserDto userDto = new UserDto();
@@ -63,6 +56,13 @@ public class AdminController {
     public String createUser(@ModelAttribute("userDto") UserDto userDto) {
         userService.save(userDto.getId(), userDto);
         return "redirect:/admin/users";
+    }
+
+    @GetMapping("/")
+    public String getCategories(final ModelMap modelMap) {
+        List<CategoryDto> categoryDtoList = categoryService.getAllCategories();
+        modelMap.addAttribute("categoryDtoList", categoryDtoList);
+        return "index";
     }
 
     @GetMapping(value = "/admin/category/create")
@@ -97,4 +97,6 @@ public class AdminController {
         commentService.save(comment);
         return "redirect:/";
     }
+
+    
 }

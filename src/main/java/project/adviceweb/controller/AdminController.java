@@ -4,13 +4,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.service.annotation.GetExchange;
 import project.adviceweb.dto.CategoryDto;
 import project.adviceweb.dto.UserDto;
 import project.adviceweb.exception.CategoryNotFoundException;
 import project.adviceweb.model.Category;
+import project.adviceweb.model.Comment;
 import project.adviceweb.model.User;
 import project.adviceweb.service.*;
 
@@ -30,6 +30,19 @@ public class AdminController {
         this.answerService = answerService;
         this.categoryService = categoryService;
         this.commentService = commentService;
+    }
+
+    @GetMapping("/user")
+    public String showRegisterPage(ModelMap modelMap) {
+        User user = new User();
+        modelMap.addAttribute("user", user);
+        return "register-user";
+    }
+
+    @PostMapping("/user/register")
+    public String registerUser(@ModelAttribute("user") User user) {
+        userService.save(user);
+        return "redirect:/";
     }
 
     @GetMapping("/")
@@ -59,11 +72,35 @@ public class AdminController {
         return "create-category";
     }
 
-    @PostMapping("/admin/category/create")
-    public String createCategory(@ModelAttribute("category") Category category)
-        throws CategoryNotFoundException {
-        Category category1 = categoryService.findCategoryByName(category.getName());
-        categoryService.save(category);
+    @PostMapping("/admin/category/categories")
+    public String createCategory(final ModelMap modelMap,
+                                 @PathVariable("name") String name) {
+        Category category = null;
+        try {
+            category = categoryService.findCategoryByName(name);
+        } catch (CategoryNotFoundException ignored) {
+        }
+        if (category != null)
+            return "internal-error";
+
+        CategoryDto categoryDto = new CategoryDto();
+        categoryDto.setName(name);
+        modelMap.addAttribute("categoryDto", categoryDto);
+        return "create-category";
+    }
+
+    @GetMapping("admin/comment/create")
+    public String showCreateCommentForm(ModelMap modelMap) {
+        Comment comment = new Comment();
+        modelMap.addAttribute("comment", comment);
+        return "create-comment";
+    }
+
+    @PostMapping("/admin/comment")
+    public String createComment(@ModelAttribute("comment") Comment comment) {
+        comment.setUserId(comment.getUserId());
+        comment.setCommentId(comment.getCommentId());
+        commentService.save(comment);
         return "redirect:/";
     }
 }

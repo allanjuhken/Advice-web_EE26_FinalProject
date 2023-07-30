@@ -45,12 +45,7 @@ public class AdminController {
         return "redirect:/";
     }
 
-    @GetMapping("/")
-    public String getCategories(final ModelMap modelMap) {
-        List<CategoryDto> categoryDtoList = categoryService.getAllCategories();
-        modelMap.addAttribute("categoryDtoList", categoryDtoList);
-        return "index";
-    }
+    
 
     @GetMapping("/admin/user/create")
     public String showCreateUserForm(ModelMap modelMap) {
@@ -63,44 +58,5 @@ public class AdminController {
     public String createUser(@ModelAttribute("userDto") UserDto userDto) {
         userService.save(userDto.getId(), userDto);
         return "redirect:/admin/users";
-    }
-
-    @GetMapping(value = "/admin/category/create")
-    public String showCreateCategoryForm(ModelMap modelMap) {
-        Category category = new Category();
-        modelMap.addAttribute("category", category);
-        return "create-category";
-    }
-
-    @PostMapping("/admin/category/categories")
-    public String createCategory(final ModelMap modelMap,
-                                 @PathVariable("name") String name) {
-        Category category = null;
-        try {
-            category = categoryService.findCategoryByName(name);
-        } catch (CategoryNotFoundException ignored) {
-        }
-        if (category != null)
-            return "internal-error";
-
-        CategoryDto categoryDto = new CategoryDto();
-        categoryDto.setName(name);
-        modelMap.addAttribute("categoryDto", categoryDto);
-        return "create-category";
-    }
-
-    @GetMapping("admin/comment/create")
-    public String showCreateCommentForm(ModelMap modelMap) {
-        Comment comment = new Comment();
-        modelMap.addAttribute("comment", comment);
-        return "create-comment";
-    }
-
-    @PostMapping("/admin/comment")
-    public String createComment(@ModelAttribute("comment") Comment comment) {
-        comment.setUserId(comment.getUserId());
-        comment.setCommentId(comment.getCommentId());
-        commentService.save(comment);
-        return "redirect:/";
     }
 }

@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Create question</title>
+    <title>Sorted Questions</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="nav flex-column navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Advice Website</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -24,7 +25,8 @@
                 <a class="nav-link" th:href="@{/admin/category/create}">Create category</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" th:href="@{/admin/question}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" th:href="@{/admin/question}" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Question
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -36,7 +38,8 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdownMenuLink" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
                     Categories
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -52,5 +55,49 @@
         </form>
     </div>
 </nav>
+<div th:replace="fragments/latest_questions_fragment :: latest_questions"></div>
+<div th:replace="fragments/popular_questions_fragment :: popular_questions"></div>
+
+
+
+<h1>Latest Questions</h1>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Question</th>
+        <th>Date</th>
+        <th>Popularity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="question, index : ${latestQuestions}">
+        <td th:text="${index.index + 1}"></td>
+        <td th:text="${question.question}"></td>
+        <td th:text="${question.date}"></td>
+        <td th:text="${question.popularity}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Popular Questions</h1>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Question</th>
+        <th>Date</th>
+        <th>Popularity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="question, index : ${questions}">
+        <td th:text="${index.index + 1}"></td>
+        <td th:text="${question.question}"></td>
+        <td th:text="${question.date}"></td>
+        <td th:text="${question.popularity}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

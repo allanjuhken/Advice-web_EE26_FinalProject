@@ -14,6 +14,5 @@ public class QuestionDto {
     private Long userId;
     private String content;
     private LocalDate questionDate;
-    @ElementCollection
     private List<String> tags;
 }

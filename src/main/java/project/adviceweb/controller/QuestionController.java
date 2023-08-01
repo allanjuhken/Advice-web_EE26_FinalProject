@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import project.adviceweb.exception.QuestionNotFoundException;
 import project.adviceweb.exception.UserNotFoundException;
 import project.adviceweb.model.Question;
 import project.adviceweb.service.QuestionService;
@@ -24,19 +25,19 @@ public class QuestionController {
     }
 
     @GetMapping("/asker-by-userId/{userId}")
-    public ResponseEntity<Question> findAskerByUserId(@PathVariable Long userId) {
+    public ResponseEntity<List<Question>> findByUserId(@PathVariable Long userId) throws QuestionNotFoundException {
         try {
-            Question question = questionService.findAskerByUserId(userId);
-            return ResponseEntity.ok(question);
+            List<Question> questions = questionService.findByUserId(userId);
+            return ResponseEntity.ok(questions);
         } catch (UserNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 
-//    @GetMapping("/by-tags")
-//    public ResponseEntity<List<Question>> findQuestionByTags() {
-//        List<Question> questions = questionService.findQuestionByTags();
-//        return ResponseEntity.ok(questions);
-//    }
+    @GetMapping("/by-tags/{tagName}")
+    public ResponseEntity<List<Question>> findQuestionsByTags(@PathVariable String tagName) {
+        List<Question> questions = questionService.findQuestionsByTags(tagName);
+        return ResponseEntity.ok(questions);
+    }
 }
 

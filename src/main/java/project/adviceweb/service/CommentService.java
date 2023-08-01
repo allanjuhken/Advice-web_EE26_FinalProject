@@ -13,23 +13,23 @@ public class CommentService {
         this.commentRepository = commentRepository;
     }
 
-    public Comment findCommentByUserId(Long userId)
-            throws CommentNotFoundException {
+    public Comment findCommentByUserId(Long userId) throws CommentNotFoundException {
         Comment comment = commentRepository.findCommentByUserId(userId);
-        if (userId == null)
-            throw new CommentNotFoundException("Comment not found", 3);
+        if (comment == null) {
+            throw new CommentNotFoundException("Comment not found for userId: " + userId, 3);
+        }
         return comment;
     }
 
-    public Comment findCommentByAnswerId(Long answerId)
-            throws CommentNotFoundException {
+    public Comment findCommentByAnswerId(Long answerId) throws CommentNotFoundException {
         Comment comment = commentRepository.findCommentByAnswerId(answerId);
-        if (answerId == null)
-            throw new CommentNotFoundException("Comment not found", 3);
+        if (comment == null) {
+            throw new CommentNotFoundException("Comment not found for answerId: " + answerId, 3);
+        }
         return comment;
     }
 
-    public Comment saveComment(Comment comment) {
+    public Comment save(Comment comment) {
         return commentRepository.save(comment);
     }
 }

@@ -16,7 +16,7 @@ import java.util.List;
 public class Question {
     @Id
     @GeneratedValue(strategy =
-            GenerationType.IDENTITY)
+            GenerationType.AUTO)
     private Long id;
     private Long userId;
     private String content;

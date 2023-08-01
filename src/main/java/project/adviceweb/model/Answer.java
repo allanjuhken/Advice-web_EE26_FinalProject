@@ -16,7 +16,7 @@ import lombok.*;
 public class Answer {
     @Id
     @GeneratedValue(strategy =
-            GenerationType.IDENTITY)
+            GenerationType.AUTO)
     private Long answerId;
     private Long userId;
     private Long questionId;

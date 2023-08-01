@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Create question</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Advice Website</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="@{/}">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/admin/user/create}">Create user</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@{/admin/category/create}">Create category</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link active dropdown-toggle" href="@{/admin/question}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Question
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="@{/admin/question/create}">Add question</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="@{/admin/category/categories}">Create new category</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="@{/admin/answer/create}">Add answers</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="@{/}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Categories
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" href="@{/admin/category-cooking/create}">Cooking</a></li>
+                    <li><a class="dropdown-item" href="@{/admin/category-health/create}">Health</a></li>
+                    <li><a class="dropdown-item" href="@{/admin/category-computer/create}">Computer issues</a></li>
+                </ul>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">UserId</th>
+        <th scope="col">Content</th>
+        <th scope="col">Question date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="questionDto : ${questionDtoList}">
+        <td scope="row" th:text="${questionDto.id}"></td>
+        <td scope="row" th:text="${questionDto.userId}"></td>
+        <td scope="row" th:text="${questionDto.content}"></td>
+        <td scope="row" th:text="${questionDto.questionDate}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

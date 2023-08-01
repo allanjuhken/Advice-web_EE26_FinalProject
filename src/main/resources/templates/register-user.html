@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>Register User</title>
@@ -12,13 +11,31 @@
     <label for="email"><b>Email</b></label>
     <input type="text" id="email" name="email" th:value="*{email}">
 
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" th:field="*{username}">
+    <label for="displayedName">Displayed name</label>
+    <input type="text" id="displayedName" name="displayedName" th:field="*{displayedName}">
 
     <label for="password"><b>Password</b></label>
     <input type="password" id="password" name="password" th:field="*{password}">
 
     <button class="btn btn-primary" type="submit">Register</button>
+
+<!--<div class="card text-center" style="width: 300px;">-->
+<!--    <div class="card-header h5 text-white bg-primary">Password Reset</div>-->
+<!--    <div class="card-body px-5">-->
+<!--        <p class="card-text py-2">-->
+<!--            Enter your email address and we'll send you an email with instructions to reset your password.-->
+<!--        </p>-->
+<!--        <div class="form-outline">-->
+<!--            <input type="email" id="typeEmail" class="form-control my-3" />-->
+<!--            <label class="form-label" for="typeEmail">Email input</label>-->
+<!--        </div>-->
+<!--        <a href="#" class="btn btn-primary w-100">Reset password</a>-->
+<!--        <div class="d-flex justify-content-between mt-4">-->
+<!--            <a class="" href="#">Login</a>-->
+<!--            <a class="" href="#">Register</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 </form>
 </body>
 </html>

@@ -4,49 +4,33 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Sorted Questions</title>
+    <title>Advice web</title>
 </head>
 <body>
-<nav class="nav flex-column navbar-dark bg-dark">
+
+<nav class="nav navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Advice Website</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" th:href="@{/}">Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/admin/user/create}">Create user</a>
+                <a class="nav-link" th:href="@{/admin/register}">Register user</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/admin/category/create}">Create category</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" th:href="@{/admin/question}" id="navbarDropdown" role="button"
-                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Question
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" th:href="@{/admin/question/create}">Add question</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" th:href="@{/admin/category/categories}">Create new category</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" th:href="@{/admin/answer/create}">Add answers</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/admin/question/create}">Questions</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" th:href="@{/}" id="navbarDropdownMenuLink" role="button"
-                   data-bs-toggle="dropdown" aria-expanded="false">
-                    Categories
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" th:href="@{/admin/category-cooking/create}">Cooking</a></li>
-                    <li><a class="dropdown-item" th:href="@{/admin/category-health/create}">Health</a></li>
-                    <li><a class="dropdown-item" th:href="@{/admin/category-computer/create}">Computer issues</a></li>
-                </ul>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{admin/category/categories}">Categories</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -55,49 +39,104 @@
         </form>
     </div>
 </nav>
-<div th:replace="fragments/latest_questions_fragment :: latest_questions"></div>
-<div th:replace="fragments/popular_questions_fragment :: popular_questions"></div>
+<!--<div th:replace="fragments/latest_questions_fragment :: latest_questions"></div>-->
+<!--<div th:replace="fragments/popular_questions_fragment :: popular_questions"></div>-->
+
+<!--<div data-spy="scroll" data-target="#navbar-example3" data-offset="0">-->
+<!--    <h4 id="item-1">Home</h4>-->
+<!--    <p>...</p>-->
+<!--    <h5 id="item-1-1">Register user</h5>-->
+<!--    <p>...</p>-->
+<!--    <h5 id="item-1-2">Create category</h5>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="item-2">Question</h4>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="item-3">Add question</h4>-->
+<!--    <p>...</p>-->
+<!--    <h5 id="item-3-1">Create new category</h5>-->
+<!--    <p>...</p>-->
+<!--    <h5 id="item-3-2">Add answers</h5>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="item-1">Categories</h4>-->
+<!--    <p>...</p>-->
+<!--    <h5 id="item-1-1">Cooking</h5>-->
+<!--    <p>...</p>-->
+<!--    <h5 id="item-1-2">Health</h5>-->
+<!--    <p>...</p>-->
+<!--    <h4 id="item-2">Computer issues</h4>-->
+<!--    <p>...</p>-->
+<!--</div>-->
 
 
+<!--<h1>Latest Questions</h1>-->
+<!--<table class="table table-bordered">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>#</th>-->
+<!--        <th>Question</th>-->
+<!--        <th>Date</th>-->
+<!--        <th>Popularity</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="question, index : ${latestQuestions}">-->
+<!--        <td th:text="${index.index + 1}"></td>-->
+<!--        <td th:text="${question.question}"></td>-->
+<!--        <td th:text="${question.date}"></td>-->
+<!--        <td th:text="${question.popularity}"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
 
-<h1>Latest Questions</h1>
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>Question</th>
-        <th>Date</th>
-        <th>Popularity</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="question, index : ${latestQuestions}">
-        <td th:text="${index.index + 1}"></td>
-        <td th:text="${question.question}"></td>
-        <td th:text="${question.date}"></td>
-        <td th:text="${question.popularity}"></td>
-    </tr>
-    </tbody>
-</table>
-
-<h1>Popular Questions</h1>
-<table class="table table-bordered">
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>Question</th>
-        <th>Date</th>
-        <th>Popularity</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="question, index : ${questions}">
-        <td th:text="${index.index + 1}"></td>
-        <td th:text="${question.question}"></td>
-        <td th:text="${question.date}"></td>
-        <td th:text="${question.popularity}"></td>
-    </tr>
-    </tbody>
-</table>
+<!--<h1>Popular Questions</h1>-->
+<!--<table class="table table-bordered">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>#</th>-->
+<!--        <th>Question</th>-->
+<!--        <th>Date</th>-->
+<!--        <th>Popularity</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="question, index : ${questions}">-->
+<!--        <td th:text="${index.index + 1}"></td>-->
+<!--        <td th:text="${question.question}"></td>-->
+<!--        <td th:text="${question.date}"></td>-->
+<!--        <td th:text="${question.popularity}"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+<!--<form>-->
+    <div class="form-row align-items-right">
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Displayed name</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">@</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Displayed name">
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInput">Password</label>
+            <input type="password" class="form-control mb-2" id="inlineFormInput">
+        </div>
+        <div class="col-auto">
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                <label class="form-check-label" for="autoSizingCheck">
+                    Remember me
+                </label>
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Login</button>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Log Out</button>
+        </div>
+    </div>
+</form>
 </body>
 </html>

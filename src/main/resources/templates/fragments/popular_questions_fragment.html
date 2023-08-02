@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Popular questions</title>
+    <title>Popular Questions</title>
 </head>
 <body>
 <h1>Popular Questions</h1>
@@ -20,7 +20,7 @@
     <tbody>
     <tr th:each="question, index : ${popularQuestions}">
         <td th:text="${index.index + 1}"></td>
-        <td th:text="${question.question}"></td>
+        <td th:text="${question.content}"></td>
         <td th:text="${question.date}"></td>
         <td th:text="${question.popularity}"></td>
     </tr>

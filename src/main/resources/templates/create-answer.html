@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/webjars/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Create answer</title>
+</head>
+<body>
+
+<nav class="nav navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Advice Website</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/admin/register-user}">Register user</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/admin/category/create}">Create category</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/admin/question/create}">Create question</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/admin/answer/create}">Create answer<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{admin/category/categories}">Categories</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+<br>
+<br>
+
+<form action="/admin/answer" method="post" th:object="${answer}">
+    <label for="answerId"><b>AnswerId</b></label>
+    <input type="text" id="answerId" name="answerId" th:field="*{answerId}">
+
+    <label for="userId"><b>UserId</b></label>
+    <input type="text" id="userId" name="userId" th:field="*{userId}">
+
+    <label for="id"><b>QuestionId</b></label>
+    <input type="text" id="id" name="questionId" th:field="*{questionId}">
+
+    <label for="content"><b>Content</b></label>
+    <input type="text" id="content" name="content" th:field="*{questionId}">
+
+    <label for="evaluation"><b>Evaluation</b></label>
+    <input type="number" id="evaluation" name="evaluation" th:value="*{evaluation}">
+
+    <button class="btn btn-primary" type="submit">Add answer</button>
+</form>
+</body>
+</html>
